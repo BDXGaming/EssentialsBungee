@@ -1,0 +1,3 @@
+name: Essentialsbungee
+version: ${project.version}
+main: me.bdx.essentialsbungee.Essentialsbungee

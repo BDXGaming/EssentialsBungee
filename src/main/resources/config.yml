@@ -1,0 +1,14 @@
+# EssentialsBungee
+# Plugin Developed by BDX____ (BDX#3629)
+# GitHub: https://github.com/BDXGaming
+
+#Whether or not players should join back on the server which they first joined on
+use-reconnect-server: true
+reconnect-server: lobby
+
+#Whether or not the proxy will enforce whitelist
+use-whitelist: true
+
+# Here you can whitelist users by Usernames which are converted to UUIDS at runtime
+# However it is advised to only whitelist users via commands
+whitelisted-users: []
