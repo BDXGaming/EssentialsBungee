@@ -19,7 +19,7 @@ public final class Essentialsbungee extends Plugin {
         //Loads the config file
         configLoader.setupBungee();
 
-
+        //Loads the config values
         this.configcontroller = new configController();
 
         //Registers the disconnect listener

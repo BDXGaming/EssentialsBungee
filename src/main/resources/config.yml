@@ -12,3 +12,6 @@ use-whitelist: true
 # Here you can whitelist users by Usernames which are converted to UUIDS at runtime
 # However it is advised to only whitelist users via commands
 whitelisted-users: []
+
+#Use the & for color codes
+no-connect-message: "&c You are not permitted to connect!"

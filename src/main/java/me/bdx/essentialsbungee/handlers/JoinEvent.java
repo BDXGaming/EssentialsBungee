@@ -15,7 +15,7 @@ public class JoinEvent implements Listener {
     @EventHandler
     public void OnJoinEvent(PreLoginEvent event){
         if(!(AllowedUsers.contains(event.getConnection().getName()))){
-            event.setCancelReason(new TextComponent(ChatColor.RED + "You are not permitted to connect!"));
+            event.setCancelReason(new TextComponent(ChatColor.translateAlternateColorCodes('&', Essentialsbungee.essentialsbungee.configcontroller.REFUSED_CONNECTION)));
             event.setCancelled(true);
         }
     }

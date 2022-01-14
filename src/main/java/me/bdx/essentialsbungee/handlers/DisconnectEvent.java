@@ -11,9 +11,13 @@ public class DisconnectEvent implements Listener {
 
     @EventHandler
     public void onDisconnectEvent(PlayerDisconnectEvent event) {
-        ProxiedPlayer player = event.getPlayer();
-        ServerInfo lobby = Essentialsbungee.essentialsbungee.getProxy().getServerInfo("lobby");
-        player.setReconnectServer(lobby);
+
+        //If set reconnect is enabled, sets the reconnection server to the server given in the config file
+        if(Essentialsbungee.essentialsbungee.configcontroller.RECONNECT_SERVER_STATUS){
+            ProxiedPlayer player = event.getPlayer();
+            ServerInfo lobby = Essentialsbungee.essentialsbungee.getProxy().getServerInfo(Essentialsbungee.essentialsbungee.configcontroller.RECONNECT_SERVER_NAME);
+            player.setReconnectServer(lobby);
+        }
     }
 
 }
