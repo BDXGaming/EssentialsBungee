@@ -2,19 +2,18 @@ package me.bdx.essentialsbungee.managers;
 
 import me.bdx.essentialsbungee.Essentialsbungee;
 import me.bdx.essentialsbungee.Utils.MojangPlayerHelper;
-import net.md_5.bungee.api.ProxyServer;
+import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 public class WhitelistManager {
 
     public static ArrayList<UUID> WhitelistedUsers;
+    public static HashMap<String, UUID> whitelistedUsersMap;
 
     public WhitelistManager() {
         WhitelistedUsers = new ArrayList<>();
@@ -28,10 +27,17 @@ public class WhitelistManager {
         LoadWhitelist();
     }
 
+    /**
+     * Loads the whitelisted users provided in the config file into the whitelist if not already present
+     */
     public void LoadWhitelist() {
 
         if (WhitelistedUsers == null) {
             WhitelistedUsers = new ArrayList<>();
+        }
+
+        if(whitelistedUsersMap == null){
+            whitelistedUsersMap = new HashMap<>();
         }
 
         List<?> userNames = Essentialsbungee.essentialsbungee.configcontroller.WHITELISTED_USERS;
@@ -41,15 +47,25 @@ public class WhitelistManager {
             UUID uuid = MojangPlayerHelper.getUniqueId((String) user);
             if(!WhitelistedUsers.contains(uuid)){
                 WhitelistedUsers.add(uuid);
+                whitelistedUsersMap.put((String) user, uuid);
             }
 
         }
 
     }
 
+    /**
+     * Saves the whitelist to the whitelist.json file
+     */
     public void saveWhitelist() {
+
         JSONArray whitelist = new JSONArray();
-        whitelist.addAll(WhitelistedUsers);
+        for(String key: whitelistedUsersMap.keySet()){
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("name", key);
+            jsonObject.put("uuid", whitelistedUsersMap.get(key));
+            whitelist.add(jsonObject);
+        }
 
         //Write JSON file
         try (FileWriter file = new FileWriter(Essentialsbungee.essentialsbungee.getDataFolder().toString()+"\\whitelist.json")) {
@@ -62,28 +78,45 @@ public class WhitelistManager {
         }
     }
 
+    /**
+     * Loads the whitelist from the whitelist.json file
+     */
     public void loadSavedWhitelist() {
         JSONParser jsonParser = new JSONParser();
 
         try (FileReader reader = new FileReader(Essentialsbungee.essentialsbungee.getDataFolder().toString()+"\\whitelist.json")) {
+
             //Read JSON file
             Object obj = jsonParser.parse(reader);
+
+            //Represents the whole JSONArray
             JSONArray whitelist = (JSONArray) obj;
+
+            //PlaceHolder Arraylist for UUIDS and for Hashmap represenations
             ArrayList<UUID> WhitelistTemp = new ArrayList<>();
+            HashMap<String, UUID> whitelistMapTemp = new HashMap<>();
 
             for(int i=0; i<whitelist.toArray().length; i++){
-                String stringUUID = (String) whitelist.get(i);
-                UUID uuid = UUID.fromString(stringUUID);
+                JSONObject jsonObject = (JSONObject) whitelist.get(i);
+
+                UUID uuid = UUID.fromString((String) jsonObject.get("uuid"));
                 WhitelistTemp.add(uuid);
+                whitelistMapTemp.put((String) jsonObject.get("name"), uuid);
             }
             WhitelistedUsers = WhitelistTemp;
+            whitelistedUsersMap = whitelistMapTemp;
 
         } catch (IOException | ParseException e) {
 
             if(e instanceof FileNotFoundException){
-                File f = new File(Essentialsbungee.essentialsbungee.getDataFolder().toString()+ "\\whitelist.json");
+                File f = new File(Essentialsbungee.essentialsbungee.getDataFolder(), "whitelist.json");
                 if(!f.exists()){
-                    f.mkdirs();
+                    try {
+                        f.createNewFile();
+                    } catch (IOException exception) {
+                        Essentialsbungee.essentialsbungee.getProxy().getLogger().warning(exception.toString());
+                    }
+                    return;
                 }
             }
 
@@ -91,4 +124,33 @@ public class WhitelistManager {
         }
 
     }
+
+    /**
+     * Adds a user to the whitelist during runtime
+     * @param username String
+     * @param uuid UUID
+     */
+    public void addWhitelistedUser(String username, UUID uuid){
+        whitelistedUsersMap.put(username, uuid);
+        WhitelistedUsers.add(uuid);
+
+        //Saves the updated whitelist when command is used to ensure whitelist accuracy
+        saveWhitelist();
+    }
+
+    /**
+     * Adds a user to the whitelist during runtime
+     * @param username String
+     */
+    public void addWhitelistedUser(String username){
+
+        UUID uuid = MojangPlayerHelper.getUniqueId(username);
+        whitelistedUsersMap.put(username, uuid);
+        WhitelistedUsers.add(uuid);
+
+        //Saves the updated whitelist when command is used to ensure whitelist accuracy
+        saveWhitelist();
+    }
+
+
 }

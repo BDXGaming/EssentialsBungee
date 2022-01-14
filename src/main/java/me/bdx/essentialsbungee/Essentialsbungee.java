@@ -1,5 +1,6 @@
 package me.bdx.essentialsbungee;
 
+import me.bdx.essentialsbungee.commands.WhitelistCommand;
 import me.bdx.essentialsbungee.config.configController;
 import me.bdx.essentialsbungee.config.configLoader;
 import me.bdx.essentialsbungee.handlers.DisconnectEvent;
@@ -32,6 +33,9 @@ public final class Essentialsbungee extends Plugin {
         //Registers the disconnect listener
         getProxy().getPluginManager().registerListener(this, new DisconnectEvent());
         getProxy().getPluginManager().registerListener(this, new JoinEvent());
+
+        //Register Commands
+        getProxy().getPluginManager().registerCommand(this, new WhitelistCommand());
 
         getProxy().getConsole().sendMessage(new TextComponent("[EssentialsBungee]: "+ChatColor.GREEN + "Plugin version 0.1.0 has loaded!"));
     }
