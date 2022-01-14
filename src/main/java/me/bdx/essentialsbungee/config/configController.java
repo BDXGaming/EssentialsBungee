@@ -19,6 +19,13 @@ public class configController {
         this.REFUSED_CONNECTION = configLoader.get().getString("no-connect-message");
     }
 
+    public void reload(){
+        this.RECONNECT_SERVER_STATUS = configLoader.get().getBoolean("use-reconnect-server");
+        this.RECONNECT_SERVER_NAME = configLoader.get().getString("reconnect-server");
+        this.USE_WHITELIST = configLoader.get().getBoolean("use-whitelist");
+        this.WHITELISTED_USERS =  configLoader.get().getList("whitelisted-users");
+        this.REFUSED_CONNECTION = configLoader.get().getString("no-connect-message");
+    }
 
 
 }

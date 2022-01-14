@@ -17,9 +17,11 @@ public class JoinEvent implements Listener {
     @EventHandler
     public void OnJoinEvent(LoginEvent event){
 
-        if(!(AllowedUsers.contains(event.getConnection().getUniqueId()))){
-            event.setCancelReason(new TextComponent(ChatColor.translateAlternateColorCodes('&', Essentialsbungee.essentialsbungee.configcontroller.REFUSED_CONNECTION)));
-            event.setCancelled(true);
+        if(Essentialsbungee.essentialsbungee.configcontroller.USE_WHITELIST){
+            if(!(AllowedUsers.contains(event.getConnection().getUniqueId()))){
+                event.setCancelReason(new TextComponent(ChatColor.translateAlternateColorCodes('&', Essentialsbungee.essentialsbungee.configcontroller.REFUSED_CONNECTION)));
+                event.setCancelled(true);
+            }
         }
     }
 

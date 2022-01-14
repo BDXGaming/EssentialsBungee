@@ -92,7 +92,7 @@ public class WhitelistManager {
 
             //Represents the whole JSONArray
             JSONArray whitelist = (JSONArray) obj;
-            Essentialsbungee.essentialsbungee.getProxy().getConsole().sendMessage(new TextComponent(whitelist.toString()));
+
             //PlaceHolder Arraylist for UUIDS and for Hashmap represenations
             ArrayList<UUID> WhitelistTemp = new ArrayList<>();
             HashMap<String, UUID> whitelistMapTemp = new HashMap<>();
