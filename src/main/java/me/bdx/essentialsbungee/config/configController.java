@@ -1,5 +1,6 @@
 package me.bdx.essentialsbungee.config;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class configController {

@@ -1,20 +1,23 @@
 package me.bdx.essentialsbungee.handlers;
 
 import me.bdx.essentialsbungee.Essentialsbungee;
+import me.bdx.essentialsbungee.managers.WhitelistManager;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.TextComponent;
+import net.md_5.bungee.api.event.LoginEvent;
 import net.md_5.bungee.api.event.PreLoginEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
 import java.util.List;
+import java.util.UUID;
 
 public class JoinEvent implements Listener {
-    private final List<?> AllowedUsers = Essentialsbungee.essentialsbungee.configcontroller.WHITELISTED_USERS;
-
+    private final List<UUID> AllowedUsers = WhitelistManager.WhitelistedUsers;
 
     @EventHandler
-    public void OnJoinEvent(PreLoginEvent event){
-        if(!(AllowedUsers.contains(event.getConnection().getName()))){
+    public void OnJoinEvent(LoginEvent event){
+
+        if(!(AllowedUsers.contains(event.getConnection().getUniqueId()))){
             event.setCancelReason(new TextComponent(ChatColor.translateAlternateColorCodes('&', Essentialsbungee.essentialsbungee.configcontroller.REFUSED_CONNECTION)));
             event.setCancelled(true);
         }
