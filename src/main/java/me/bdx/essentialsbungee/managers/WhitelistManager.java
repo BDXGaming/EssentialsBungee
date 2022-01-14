@@ -2,6 +2,7 @@ package me.bdx.essentialsbungee.managers;
 
 import me.bdx.essentialsbungee.Essentialsbungee;
 import me.bdx.essentialsbungee.Utils.MojangPlayerHelper;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
@@ -63,7 +64,7 @@ public class WhitelistManager {
         for(String key: whitelistedUsersMap.keySet()){
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("name", key);
-            jsonObject.put("uuid", whitelistedUsersMap.get(key));
+            jsonObject.put("uuid", whitelistedUsersMap.get(key).toString());
             whitelist.add(jsonObject);
         }
 
@@ -91,7 +92,7 @@ public class WhitelistManager {
 
             //Represents the whole JSONArray
             JSONArray whitelist = (JSONArray) obj;
-
+            Essentialsbungee.essentialsbungee.getProxy().getConsole().sendMessage(new TextComponent(whitelist.toString()));
             //PlaceHolder Arraylist for UUIDS and for Hashmap represenations
             ArrayList<UUID> WhitelistTemp = new ArrayList<>();
             HashMap<String, UUID> whitelistMapTemp = new HashMap<>();
@@ -147,6 +148,22 @@ public class WhitelistManager {
         UUID uuid = MojangPlayerHelper.getUniqueId(username);
         whitelistedUsersMap.put(username, uuid);
         WhitelistedUsers.add(uuid);
+
+        //Saves the updated whitelist when command is used to ensure whitelist accuracy
+        saveWhitelist();
+    }
+
+    /**
+     * Allows for users to be removed from the whitelist during runtime
+     * @param username String
+     */
+    public void removeWhitelistedUser(String username){
+
+        UUID uuid = MojangPlayerHelper.getUniqueId(username);
+        if(whitelistedUsersMap.containsKey(username)){
+            whitelistedUsersMap.remove(username, uuid);
+        }
+        WhitelistedUsers.remove(uuid);
 
         //Saves the updated whitelist when command is used to ensure whitelist accuracy
         saveWhitelist();
