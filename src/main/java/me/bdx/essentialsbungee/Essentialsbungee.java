@@ -1,11 +1,11 @@
 package me.bdx.essentialsbungee;
 
 import me.bdx.essentialsbungee.commands.WhitelistCommand;
-import me.bdx.essentialsbungee.config.configController;
-import me.bdx.essentialsbungee.config.configLoader;
+import me.bdx.essentialsbungee.config.ConfigController;
+import me.bdx.essentialsbungee.config.ConfigLoader;
 import me.bdx.essentialsbungee.handlers.DisconnectEvent;
 import me.bdx.essentialsbungee.handlers.JoinEvent;
-import me.bdx.essentialsbungee.handlers.tabCompleteEvent;
+import me.bdx.essentialsbungee.handlers.TabEvent;
 import me.bdx.essentialsbungee.managers.WhitelistManager;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -14,7 +14,7 @@ import net.md_5.bungee.api.plugin.Plugin;
 public final class Essentialsbungee extends Plugin {
 
     public static Essentialsbungee essentialsbungee;
-    public configController configcontroller;
+    public ConfigController configcontroller;
     public static WhitelistManager whitelistManager;
 
     @Override
@@ -23,10 +23,10 @@ public final class Essentialsbungee extends Plugin {
         essentialsbungee = this;
 
         //Loads the config file
-        configLoader.setupBungee();
+        ConfigLoader.setupBungee();
 
         //Loads the config values
-        this.configcontroller = new configController();
+        this.configcontroller = new ConfigController();
 
         //Loads the Whitelist
         whitelistManager = new WhitelistManager();
@@ -34,7 +34,7 @@ public final class Essentialsbungee extends Plugin {
         //Registers the listeners
         getProxy().getPluginManager().registerListener(this, new DisconnectEvent());
         getProxy().getPluginManager().registerListener(this, new JoinEvent());
-        getProxy().getPluginManager().registerListener(this, new tabCompleteEvent());
+        getProxy().getPluginManager().registerListener(this, new TabEvent());
 
         //Register Commands
         getProxy().getPluginManager().registerCommand(this, new WhitelistCommand());

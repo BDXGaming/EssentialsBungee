@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 
-public class configLoader {
+public class ConfigLoader {
 
     public static Configuration configuration;
 

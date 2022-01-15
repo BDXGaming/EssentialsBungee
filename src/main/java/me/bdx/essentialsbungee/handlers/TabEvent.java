@@ -8,7 +8,7 @@ import net.md_5.bungee.event.EventHandler;
 import java.util.Arrays;
 import java.util.List;
 
-public class tabCompleteEvent implements Listener {
+public class TabEvent implements Listener {
 
     private final String[] whitelistSubcommands = {"list", "add", "remove", "on", "off", "status"};
     private final List<String> subcommands = Arrays.asList(whitelistSubcommands);
