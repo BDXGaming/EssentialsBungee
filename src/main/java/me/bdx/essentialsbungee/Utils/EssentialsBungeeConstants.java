@@ -5,7 +5,7 @@ import net.md_5.bungee.api.ChatColor;
 public class EssentialsBungeeConstants {
 
     /** The permission needed to use the whitelist command*/
-    public static final String WHITELIST_COMMNAND_PERMISSION = "essentialsBungee.whitelist";
+    public static final String WHITELIST_COMMAND_PERMISSION = "essentialsBungee.whitelist";
 
     /** The permission needed to use the reload command */
     public static final String RELOAD_COMMAND_PERMISSION = "essentialsBungee.reload";
