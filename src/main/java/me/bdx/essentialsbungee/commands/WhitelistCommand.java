@@ -17,7 +17,6 @@ import java.util.List;
 public class WhitelistCommand extends Command implements TabExecutor {
 
     private final String[] whitelistSubcommands = {"list", "add", "remove", "on", "off", "status"};
-    private final List<String> subcommands = Arrays.asList(whitelistSubcommands);
 
     public WhitelistCommand(){
         super("gwhitelist", "", "globalwhitelist");
@@ -25,7 +24,7 @@ public class WhitelistCommand extends Command implements TabExecutor {
 
     @Override
     public void execute(CommandSender sender, String[] args) {
-        if(sender.hasPermission(EssentialsBungeeConstants.WHITELIST_COMMNAND_PERMISSION)){
+        if(sender.hasPermission(EssentialsBungeeConstants.WHITELIST_COMMAND_PERMISSION)){
             if(args.length >0){
 
                 //Lists the users Who are whitelisted on the server
@@ -96,18 +95,21 @@ public class WhitelistCommand extends Command implements TabExecutor {
     @Override
     public Iterable<String> onTabComplete(CommandSender sender, String[] args) {
 
-        if(args.length <2){
-             return Arrays.asList(whitelistSubcommands);
-        }else{
-            if(args[0].equalsIgnoreCase("add") || args[0].equalsIgnoreCase("remove")){
-                if(args[0].equalsIgnoreCase("add")){
-                    return OnlinePlayers.getOnlinePlayerNames();
+        if(sender.hasPermission(EssentialsBungeeConstants.WHITELIST_COMMAND_PERMISSION)){
+            if(args.length <2){
+                return Arrays.asList(whitelistSubcommands);
+            }else{
+                if(args[0].equalsIgnoreCase("add") || args[0].equalsIgnoreCase("remove")){
+                    if(args[0].equalsIgnoreCase("add")){
+                        return OnlinePlayers.getOnlinePlayerNames();
+                    }
+
+                    return WhitelistManager.whitelistedUsersMap.keySet();
                 }
 
-                return WhitelistManager.whitelistedUsersMap.keySet();
             }
-            return new ArrayList<String>();
         }
+        return new ArrayList<>();
     }
 
 }
