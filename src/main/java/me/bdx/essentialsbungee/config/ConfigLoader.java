@@ -1,6 +1,7 @@
 package me.bdx.essentialsbungee.config;
 
 import me.bdx.essentialsbungee.Essentialsbungee;
+import me.bdx.essentialsbungee.Utils.LoggerControl;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.config.Configuration;
 import net.md_5.bungee.config.ConfigurationProvider;
@@ -25,14 +26,14 @@ public class ConfigLoader {
             try (InputStream in = Essentialsbungee.essentialsbungee.getResourceAsStream("config.yml")) {
                 Files.copy(in, file.toPath());
             } catch (IOException e) {
-                ProxyServer.getInstance().getLogger().warning(e.toString());
+                LoggerControl.logWarning(e.toString());
             }
         }
 
         try {
             configuration = ConfigurationProvider.getProvider(YamlConfiguration.class).load(new File(Essentialsbungee.essentialsbungee.getDataFolder(), "config.yml"));
         } catch (IOException e) {
-            ProxyServer.getInstance().getLogger().warning(e.toString());
+            LoggerControl.logWarning(e.toString());
         }
     }
 

@@ -1,6 +1,7 @@
 package me.bdx.essentialsbungee.managers;
 
 import me.bdx.essentialsbungee.Essentialsbungee;
+import me.bdx.essentialsbungee.Utils.LoggerControl;
 import me.bdx.essentialsbungee.Utils.MojangPlayerHelper;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.json.simple.JSONObject;
@@ -75,7 +76,7 @@ public class WhitelistManager {
             file.flush();
 
         } catch (IOException exception) {
-            Essentialsbungee.essentialsbungee.getProxy().getLogger().warning(exception.toString());
+            LoggerControl.logWarning(exception.toString());
         }
     }
 
@@ -115,13 +116,13 @@ public class WhitelistManager {
                     try {
                         f.createNewFile();
                     } catch (IOException exception) {
-                        Essentialsbungee.essentialsbungee.getProxy().getLogger().warning(exception.toString());
+                        LoggerControl.logWarning(exception.toString());
                     }
                     return;
                 }
             }
 
-            Essentialsbungee.essentialsbungee.getProxy().getLogger().warning(e.toString());
+            LoggerControl.logWarning(e.toString());
         }
 
     }

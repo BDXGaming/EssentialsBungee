@@ -7,8 +7,15 @@ import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.plugin.Command;
+import net.md_5.bungee.api.plugin.TabExecutor;
 
-public class WhitelistCommand extends Command {
+import java.util.Arrays;
+import java.util.List;
+
+public class WhitelistCommand extends Command implements TabExecutor {
+
+    private final String[] whitelistSubcommands = {"list", "add", "remove", "on", "off", "status"};
+    private final List<String> subcommands = Arrays.asList(whitelistSubcommands);
 
     public WhitelistCommand(){
         super("gwhitelist", "", "globalwhitelist");
@@ -80,6 +87,17 @@ public class WhitelistCommand extends Command {
             }
         }else{
             sender.sendMessage(new TextComponent(EssentialsBungeeConstants.MISSING_PERMISSION_RESPONSE));
+        }
+    }
+
+
+    @Override
+    public Iterable<String> onTabComplete(CommandSender sender, String[] args) {
+
+        if(args.length <2){
+             return Arrays.asList(whitelistSubcommands);
+        }else{
+            return WhitelistManager.whitelistedUsersMap.keySet();
         }
     }
 }

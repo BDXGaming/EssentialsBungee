@@ -1,5 +1,7 @@
 package me.bdx.essentialsbungee.config;
 
+import net.md_5.bungee.config.Configuration;
+
 import java.util.List;
 
 public class ConfigController {
@@ -11,19 +13,21 @@ public class ConfigController {
     public String REFUSED_CONNECTION;
 
     public ConfigController(){
-        this.RECONNECT_SERVER_STATUS = ConfigLoader.get().getBoolean("use-reconnect-server");
-        this.RECONNECT_SERVER_NAME = ConfigLoader.get().getString("reconnect-server");
-        this.USE_WHITELIST = ConfigLoader.get().getBoolean("use-whitelist");
-        this.WHITELISTED_USERS =  ConfigLoader.get().getList("whitelisted-users");
-        this.REFUSED_CONNECTION = ConfigLoader.get().getString("no-connect-message");
+        Configuration config = ConfigLoader.get();
+        this.RECONNECT_SERVER_STATUS = config.getBoolean("use-reconnect-server");
+        this.RECONNECT_SERVER_NAME = config.getString("reconnect-server");
+        this.USE_WHITELIST = config.getBoolean("use-whitelist");
+        this.WHITELISTED_USERS =  config.getList("whitelisted-users");
+        this.REFUSED_CONNECTION = config.getString("no-connect-message");
     }
 
     public void reload(){
-        this.RECONNECT_SERVER_STATUS = ConfigLoader.get().getBoolean("use-reconnect-server");
-        this.RECONNECT_SERVER_NAME = ConfigLoader.get().getString("reconnect-server");
-        this.USE_WHITELIST = ConfigLoader.get().getBoolean("use-whitelist");
-        this.WHITELISTED_USERS =  ConfigLoader.get().getList("whitelisted-users");
-        this.REFUSED_CONNECTION = ConfigLoader.get().getString("no-connect-message");
+        Configuration config = ConfigLoader.get();
+        this.RECONNECT_SERVER_STATUS = config.getBoolean("use-reconnect-server");
+        this.RECONNECT_SERVER_NAME = config.getString("reconnect-server");
+        this.USE_WHITELIST = config.getBoolean("use-whitelist");
+        this.WHITELISTED_USERS =  config.getList("whitelisted-users");
+        this.REFUSED_CONNECTION = config.getString("no-connect-message");
     }
 
 
