@@ -20,60 +20,62 @@ public class WhitelistCommand extends Command {
             if(args.length >0){
 
                 //Lists the users Who are whitelisted on the server
-                if(args[0].equals("list")){
-                    //Checks if user has list subcommand permission
-                    sender.sendMessage(new TextComponent("Whitelisted Users: \n"+WhitelistManager.whitelistedUsersMap.keySet().toString()));
-                }
+                switch (args[0]) {
+                    case "list":
+                        //Checks if user has list subcommand permission
+                        sender.sendMessage(new TextComponent("Whitelisted Users: \n" + WhitelistManager.whitelistedUsersMap.keySet().toString()));
+                        break;
 
-                //Adds the given user to the whitelist
-                else if(args[0].equals("add")){
-                    //Checks if a user has been provided
-                    if(args.length >1){
-                        String user = args[1];
-                        Essentialsbungee.whitelistManager.addWhitelistedUser(user);
-                        sender.sendMessage(new TextComponent(ChatColor.GREEN + "Added "+ user + " to the whitelist!"));
+                    //Adds the given user to the whitelist
+                    case "add":
+                        //Checks if a user has been provided
+                        if (args.length > 1) {
+                            String user = args[1];
+                            Essentialsbungee.whitelistManager.addWhitelistedUser(user);
+                            sender.sendMessage(new TextComponent(ChatColor.GREEN + "Added " + user + " to the whitelist!"));
 
-                    }else{
-                        sender.sendMessage(new TextComponent(ChatColor.YELLOW + "Please specify a user /gwhitelist add <user>"));
-                    }
-                }
-                //Removes the given user to the whitelist
-                else if(args[0].equals("remove")){
-                    //Checks if a user has been provided
-                    if(args.length >1){
-                        String user = args[1];
-                        Essentialsbungee.whitelistManager.removeWhitelistedUser(user);
-                        sender.sendMessage(new TextComponent(ChatColor.GREEN + "Removed "+ user + " from the whitelist!"));
+                        } else {
+                            sender.sendMessage(new TextComponent(ChatColor.YELLOW + "Please specify a user /gwhitelist add <user>"));
+                        }
+                        break;
+                    //Removes the given user to the whitelist
+                    case "remove":
+                        //Checks if a user has been provided
+                        if (args.length > 1) {
+                            String user = args[1];
+                            Essentialsbungee.whitelistManager.removeWhitelistedUser(user);
+                            sender.sendMessage(new TextComponent(ChatColor.GREEN + "Removed " + user + " from the whitelist!"));
 
-                    }else{
-                        sender.sendMessage(new TextComponent(ChatColor.YELLOW + "Please specify a user /gwhitelist remove <user>"));
-                    }
-                }
-                //Disables the whitelist (Turns the whitelist off)
-                else if(args[0].equals("off")){
-                    if(Essentialsbungee.essentialsbungee.configcontroller.USE_WHITELIST){
-                        Essentialsbungee.essentialsbungee.configcontroller.USE_WHITELIST = false;
-                        sender.sendMessage(new TextComponent(ChatColor.RED + "Proxy whitelist has been disabled!"));
-                    }else{
-                        sender.sendMessage(new TextComponent("The whitelist is already disabled!"));
-                    }
-                }
-                //Enables the whitelist (Turns on the whitelist)
-                else if(args[0].equals("on")){
-                    if(!(Essentialsbungee.essentialsbungee.configcontroller.USE_WHITELIST)){
-                        Essentialsbungee.essentialsbungee.configcontroller.USE_WHITELIST = true;
-                        sender.sendMessage(new TextComponent(ChatColor.GREEN + "Proxy whitelist has been enabled!"));
-                    }else{
-                        sender.sendMessage(new TextComponent("The whitelist is already enabled!"));
-                    }
-                }
-                //Checks the current status of the global whitelist
-                else if(args[0].equals("status")){
-                    if(Essentialsbungee.essentialsbungee.configcontroller.USE_WHITELIST){
-                        sender.sendMessage(new TextComponent("The whitelist is " + ChatColor.GREEN + "enabled!"));
-                    }else{
-                        sender.sendMessage(new TextComponent("The whitelist is " + ChatColor.RED + "disabled!"));
-                    }
+                        } else {
+                            sender.sendMessage(new TextComponent(ChatColor.YELLOW + "Please specify a user /gwhitelist remove <user>"));
+                        }
+                        break;
+                    //Disables the whitelist (Turns the whitelist off)
+                    case "off":
+                        if (Essentialsbungee.essentialsbungee.configcontroller.USE_WHITELIST) {
+                            Essentialsbungee.essentialsbungee.configcontroller.USE_WHITELIST = false;
+                            sender.sendMessage(new TextComponent(ChatColor.RED + "Proxy whitelist has been disabled!"));
+                        } else {
+                            sender.sendMessage(new TextComponent("The whitelist is already disabled!"));
+                        }
+                        break;
+                    //Enables the whitelist (Turns on the whitelist)
+                    case "on":
+                        if (!(Essentialsbungee.essentialsbungee.configcontroller.USE_WHITELIST)) {
+                            Essentialsbungee.essentialsbungee.configcontroller.USE_WHITELIST = true;
+                            sender.sendMessage(new TextComponent(ChatColor.GREEN + "Proxy whitelist has been enabled!"));
+                        } else {
+                            sender.sendMessage(new TextComponent("The whitelist is already enabled!"));
+                        }
+                        break;
+                    //Checks the current status of the global whitelist
+                    case "status":
+                        if (Essentialsbungee.essentialsbungee.configcontroller.USE_WHITELIST) {
+                            sender.sendMessage(new TextComponent("The whitelist is " + ChatColor.GREEN + "enabled!"));
+                        } else {
+                            sender.sendMessage(new TextComponent("The whitelist is " + ChatColor.RED + "disabled!"));
+                        }
+                        break;
                 }
             }
         }else{
