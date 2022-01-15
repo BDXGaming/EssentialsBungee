@@ -2,6 +2,7 @@ package me.bdx.essentialsbungee.commands;
 
 import me.bdx.essentialsbungee.Essentialsbungee;
 import me.bdx.essentialsbungee.Utils.EssentialsBungeeConstants;
+import me.bdx.essentialsbungee.Utils.OnlinePlayers;
 import me.bdx.essentialsbungee.managers.WhitelistManager;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
@@ -9,6 +10,7 @@ import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.plugin.Command;
 import net.md_5.bungee.api.plugin.TabExecutor;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -97,7 +99,15 @@ public class WhitelistCommand extends Command implements TabExecutor {
         if(args.length <2){
              return Arrays.asList(whitelistSubcommands);
         }else{
-            return WhitelistManager.whitelistedUsersMap.keySet();
+            if(args[0].equalsIgnoreCase("add") || args[0].equalsIgnoreCase("remove")){
+                if(args[0].equalsIgnoreCase("add")){
+                    return OnlinePlayers.getOnlinePlayerNames();
+                }
+
+                return WhitelistManager.whitelistedUsersMap.keySet();
+            }
+            return new ArrayList<String>();
         }
     }
+
 }
