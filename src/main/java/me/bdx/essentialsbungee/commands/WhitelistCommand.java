@@ -3,6 +3,7 @@ package me.bdx.essentialsbungee.commands;
 import me.bdx.essentialsbungee.Essentialsbungee;
 import me.bdx.essentialsbungee.Utils.EssentialsBungeeConstants;
 import me.bdx.essentialsbungee.Utils.OnlinePlayers;
+import me.bdx.essentialsbungee.Utils.TabCompleteHelper;
 import me.bdx.essentialsbungee.managers.WhitelistManager;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
@@ -95,21 +96,23 @@ public class WhitelistCommand extends Command implements TabExecutor {
     @Override
     public Iterable<String> onTabComplete(CommandSender sender, String[] args) {
 
+        ArrayList<String> completions = new ArrayList<>();
+
         if(sender.hasPermission(EssentialsBungeeConstants.WHITELIST_COMMAND_PERMISSION)){
             if(args.length <2){
-                return Arrays.asList(whitelistSubcommands);
+                return TabCompleteHelper.copyPartialMatches(args[0], Arrays.asList(whitelistSubcommands), completions);
             }else{
                 if(args[0].equalsIgnoreCase("add") || args[0].equalsIgnoreCase("remove")){
                     if(args[0].equalsIgnoreCase("add")){
-                        return OnlinePlayers.getOnlinePlayerNames();
+                        return TabCompleteHelper.copyPartialMatches(args[1], OnlinePlayers.getOnlinePlayerNames(), completions);
                     }
 
-                    return WhitelistManager.whitelistedUsersMap.keySet();
+                    return TabCompleteHelper.copyPartialMatches(args[1], WhitelistManager.whitelistedUsersMap.keySet(), completions);
                 }
 
             }
         }
-        return new ArrayList<>();
+        return completions;
     }
 
 }
