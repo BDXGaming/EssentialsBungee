@@ -48,7 +48,7 @@ public final class Essentialsbungee extends Plugin {
         getProxy().getPluginManager().registerCommand(this, new ServerStatusCommand());
 
         //Log in console that plugin is online
-        getProxy().getConsole().sendMessage(new TextComponent("[EssentialsBungee]: "+ChatColor.GREEN + "Plugin version 0.1.0 has loaded!"));
+        getProxy().getConsole().sendMessage(new TextComponent("[EssentialsBungee]: "+ChatColor.GREEN + "Plugin version 0.2.0 has loaded!"));
     }
 
     @Override
@@ -57,6 +57,6 @@ public final class Essentialsbungee extends Plugin {
         //Saves Whitelist
         whitelistManager.saveWhitelist();
 
-        getProxy().getConsole().sendMessage(new TextComponent("[EssentialsBungee]: "+ChatColor.RED + "Plugin version 0.1.0 has been disabled!"));
+        getProxy().getConsole().sendMessage(new TextComponent("[EssentialsBungee]: "+ChatColor.RED + "Plugin version 0.2.0 has been disabled!"));
     }
 }
