@@ -2,6 +2,7 @@ package me.bdx.essentialsbungee;
 
 import me.bdx.essentialsbungee.Utils.LoggerControl;
 import me.bdx.essentialsbungee.commands.ReloadCommand;
+import me.bdx.essentialsbungee.commands.ServerStatusCommand;
 import me.bdx.essentialsbungee.commands.UserInfoCommand;
 import me.bdx.essentialsbungee.commands.WhitelistCommand;
 import me.bdx.essentialsbungee.config.ConfigController;
@@ -17,7 +18,7 @@ public final class Essentialsbungee extends Plugin {
 
     public static Essentialsbungee essentialsbungee;
     public ConfigController configcontroller;
-    public static WhitelistManager whitelistManager;
+    public WhitelistManager whitelistManager;
 
     @Override
     public void onEnable() {
@@ -44,6 +45,7 @@ public final class Essentialsbungee extends Plugin {
         getProxy().getPluginManager().registerCommand(this, new WhitelistCommand());
         getProxy().getPluginManager().registerCommand(this, new ReloadCommand());
         getProxy().getPluginManager().registerCommand(this, new UserInfoCommand());
+        getProxy().getPluginManager().registerCommand(this, new ServerStatusCommand());
 
         //Log in console that plugin is online
         getProxy().getConsole().sendMessage(new TextComponent("[EssentialsBungee]: "+ChatColor.GREEN + "Plugin version 0.1.0 has loaded!"));
