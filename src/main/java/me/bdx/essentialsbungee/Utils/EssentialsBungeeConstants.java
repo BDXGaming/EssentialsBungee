@@ -16,6 +16,9 @@ public class EssentialsBungeeConstants {
     /** The permission needed for the userinfo command ip*/
     public static final String USERINFO_IP_COMMAND_PERMISSION = "essentialsBungee.userinfo.ip";
 
+    /** The permission needed to check the status of a specified server */
+    public static final String SERVER_STATUS_COMMAND_PERMISSION  = "essentialsBungee.serverstatus";
+
     /** The response given for any missing permissions */
     public static final String MISSING_PERMISSION_RESPONSE = ChatColor.RED + "You do not have the required permissions to use this command!";
 }
