@@ -2,6 +2,7 @@ package me.bdx.essentialsbungee;
 
 import me.bdx.essentialsbungee.Utils.LoggerControl;
 import me.bdx.essentialsbungee.commands.ReloadCommand;
+import me.bdx.essentialsbungee.commands.UserInfoCommand;
 import me.bdx.essentialsbungee.commands.WhitelistCommand;
 import me.bdx.essentialsbungee.config.ConfigController;
 import me.bdx.essentialsbungee.config.ConfigLoader;
@@ -38,10 +39,11 @@ public final class Essentialsbungee extends Plugin {
         //Registers the listeners
         getProxy().getPluginManager().registerListener(this, new DisconnectEvent());
         getProxy().getPluginManager().registerListener(this, new JoinEvent());
-        getProxy().getPluginManager().registerCommand(this, new ReloadCommand());
 
         //Register Commands
         getProxy().getPluginManager().registerCommand(this, new WhitelistCommand());
+        getProxy().getPluginManager().registerCommand(this, new ReloadCommand());
+        getProxy().getPluginManager().registerCommand(this, new UserInfoCommand());
 
         //Log in console that plugin is online
         getProxy().getConsole().sendMessage(new TextComponent("[EssentialsBungee]: "+ChatColor.GREEN + "Plugin version 0.1.0 has loaded!"));

@@ -38,4 +38,26 @@ public class OnlinePlayers {
         return onlinePlayerNames;
     }
 
+    /**
+     * Checks if the given player is online
+     * @param player String playername
+     * @return boolean if the player is online
+     */
+    public static boolean checkIfPlayerOnline(String player){
+        ArrayList<String> onlinePlayers = getOnlinePlayerNames();
+        return onlinePlayers.contains(player);
+    }
+
+    /**
+     * Gets the ProxiedPlayer instance for the player with the given name. If no player is online with the given name null is returned
+     * @param name String
+     * @return The ProxiedPlayer instance or null
+     */
+    public static ProxiedPlayer getPlayer(String name){
+        if(checkIfPlayerOnline(name)){
+            return ProxyServer.getInstance().getPlayer(name);
+        }
+        return null;
+    }
+
 }
