@@ -6,7 +6,7 @@
 #-----------------------------------------------------------------------------------------------------------------------
 #
 # Whether or not players should join back on the server which they first joined on
-use-reconnect-server: true
+use-reconnect-server: false
 reconnect-server: lobby
 
 # Whitelist Settings
