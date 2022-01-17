@@ -14,28 +14,39 @@ import java.util.*;
 
 public class WhitelistManager {
 
-    public static ArrayList<UUID> WhitelistedUsers;
-    public static HashMap<String, UUID> whitelistedUsersMap;
+    private static WhitelistManager whitelistManagerInstance;
+    public ArrayList<UUID> whitelistedUsers;
+    public HashMap<String, UUID> whitelistedUsersMap;
 
     public WhitelistManager() {
-        WhitelistedUsers = new ArrayList<>();
+        whitelistedUsers = new ArrayList<>();
         loadSavedWhitelist();
-        LoadWhitelist();
+        loadWhitelist();
+        whitelistManagerInstance = this;
     }
 
     public WhitelistManager(ArrayList<UUID> whitelist) {
-        WhitelistedUsers = whitelist;
+        whitelistedUsers = whitelist;
         loadSavedWhitelist();
-        LoadWhitelist();
+        loadWhitelist();
+        whitelistManagerInstance = this;
+    }
+
+    /**
+     * Gets the instance of the whitelist manager
+     * @return The instance of WhitelistManager
+     */
+    public static WhitelistManager getInstance(){
+        return whitelistManagerInstance;
     }
 
     /**
      * Loads the whitelisted users provided in the config file into the whitelist if not already present
      */
-    public void LoadWhitelist() {
+    public void loadWhitelist() {
 
-        if (WhitelistedUsers == null) {
-            WhitelistedUsers = new ArrayList<>();
+        if (whitelistedUsers == null) {
+            whitelistedUsers = new ArrayList<>();
         }
 
         if(whitelistedUsersMap == null){
@@ -47,8 +58,8 @@ public class WhitelistManager {
         for (Object user : userNames) {
 
             UUID uuid = MojangPlayerHelper.getUniqueId((String) user);
-            if(!WhitelistedUsers.contains(uuid)){
-                WhitelistedUsers.add(uuid);
+            if(!whitelistedUsers.contains(uuid)){
+                whitelistedUsers.add(uuid);
                 whitelistedUsersMap.put((String) user, uuid);
             }
 
@@ -105,7 +116,7 @@ public class WhitelistManager {
                 WhitelistTemp.add(uuid);
                 whitelistMapTemp.put((String) jsonObject.get("name"), uuid);
             }
-            WhitelistedUsers = WhitelistTemp;
+            whitelistedUsers = WhitelistTemp;
             whitelistedUsersMap = whitelistMapTemp;
 
         } catch (IOException | ParseException e) {
@@ -134,7 +145,7 @@ public class WhitelistManager {
      */
     public void addWhitelistedUser(String username, UUID uuid){
         whitelistedUsersMap.put(username, uuid);
-        WhitelistedUsers.add(uuid);
+        whitelistedUsers.add(uuid);
 
         //Saves the updated whitelist when command is used to ensure whitelist accuracy
         saveWhitelist();
@@ -148,7 +159,7 @@ public class WhitelistManager {
 
         UUID uuid = MojangPlayerHelper.getUniqueId(username);
         whitelistedUsersMap.put(username, uuid);
-        WhitelistedUsers.add(uuid);
+        whitelistedUsers.add(uuid);
 
         //Saves the updated whitelist when command is used to ensure whitelist accuracy
         saveWhitelist();
@@ -164,11 +175,26 @@ public class WhitelistManager {
         if(whitelistedUsersMap.containsKey(username)){
             whitelistedUsersMap.remove(username, uuid);
         }
-        WhitelistedUsers.remove(uuid);
+        whitelistedUsers.remove(uuid);
 
         //Saves the updated whitelist when command is used to ensure whitelist accuracy
         saveWhitelist();
     }
 
+    /**
+     * Gets the whitelistedUsers
+     * @return ArrayList<UUID> The whitelistedUsers
+     */
+    public ArrayList<UUID> getWhitelistedUsers(){
+        return whitelistedUsers;
+    }
+
+    /**
+     * Gets the map of whitelisted users and usernames
+     * @return hashmap of whitelisted users
+     */
+    public HashMap<String ,UUID> getWhitelistedUsersMap(){
+        return whitelistedUsersMap;
+    }
 
 }

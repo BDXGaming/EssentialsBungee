@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 public class JoinEvent implements Listener {
-    private final List<UUID> AllowedUsers = WhitelistManager.WhitelistedUsers;
+    private final List<UUID> AllowedUsers = WhitelistManager.getInstance().getWhitelistedUsers();
 
     @EventHandler
     public void OnJoinEvent(LoginEvent event){

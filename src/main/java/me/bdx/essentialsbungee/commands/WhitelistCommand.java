@@ -32,7 +32,7 @@ public class WhitelistCommand extends Command implements TabExecutor {
                 switch (args[0]) {
                     case "list":
                         //Checks if user has list subcommand permission
-                        sender.sendMessage(new TextComponent("Whitelisted Users: \n" + WhitelistManager.whitelistedUsersMap.keySet().toString()));
+                        sender.sendMessage(new TextComponent("Whitelisted Users: \n" + WhitelistManager.getInstance().getWhitelistedUsersMap().keySet().toString()));
                         break;
 
                     //Adds the given user to the whitelist
@@ -107,7 +107,7 @@ public class WhitelistCommand extends Command implements TabExecutor {
                         return TabCompleteHelper.copyPartialMatches(args[1], OnlinePlayers.getOnlinePlayerNames(), completions);
                     }
 
-                    return TabCompleteHelper.copyPartialMatches(args[1], WhitelistManager.whitelistedUsersMap.keySet(), completions);
+                    return TabCompleteHelper.copyPartialMatches(args[1], WhitelistManager.getInstance().getWhitelistedUsersMap().keySet(), completions);
                 }
 
             }
