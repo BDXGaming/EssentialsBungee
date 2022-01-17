@@ -40,7 +40,7 @@ public class WhitelistCommand extends Command implements TabExecutor {
                         //Checks if a user has been provided
                         if (args.length > 1) {
                             String user = args[1];
-                            Essentialsbungee.whitelistManager.addWhitelistedUser(user);
+                            WhitelistManager.getInstance().addWhitelistedUser(user);
                             sender.sendMessage(new TextComponent(ChatColor.GREEN + "Added " + user + " to the whitelist!"));
 
                         } else {
@@ -52,7 +52,7 @@ public class WhitelistCommand extends Command implements TabExecutor {
                         //Checks if a user has been provided
                         if (args.length > 1) {
                             String user = args[1];
-                            Essentialsbungee.whitelistManager.removeWhitelistedUser(user);
+                            WhitelistManager.getInstance().removeWhitelistedUser(user);
                             sender.sendMessage(new TextComponent(ChatColor.GREEN + "Removed " + user + " from the whitelist!"));
 
                         } else {
