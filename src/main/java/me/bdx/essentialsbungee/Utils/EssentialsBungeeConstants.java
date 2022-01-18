@@ -19,6 +19,12 @@ public class EssentialsBungeeConstants {
     /** The permission needed to check the status of a specified server */
     public static final String SERVER_STATUS_COMMAND_PERMISSION  = "essentialsBungee.serverstatus";
 
+    /** The permission needed to report a user */
+    public static final String REPORT_COMMAND_PERMISSION  = "essentialsBungee.report";
+
+    /** The permission needed to receive user report messages */
+    public static final String REPORT_COMMAND_ALERT_PERMISSION  = "essentialsBungee.report.alert";
+
     /** The response given for any missing permissions */
     public static final String MISSING_PERMISSION_RESPONSE = ChatColor.RED + "You do not have the required permissions to use this command!";
 }
