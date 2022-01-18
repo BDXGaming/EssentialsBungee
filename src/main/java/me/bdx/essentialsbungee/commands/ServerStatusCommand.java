@@ -1,12 +1,11 @@
 package me.bdx.essentialsbungee.commands;
 
 import me.bdx.essentialsbungee.Utils.EssentialsBungeeConstants;
-import me.bdx.essentialsbungee.Utils.TabCompleteHelper;
+import me.bdx.essentialsbungee.Utils.StringUtils;
 import net.md_5.bungee.api.*;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.plugin.Command;
 import net.md_5.bungee.api.plugin.TabExecutor;
-import org.checkerframework.checker.units.qual.A;
 
 import java.util.ArrayList;
 import java.util.Set;
@@ -72,7 +71,7 @@ public class ServerStatusCommand extends Command implements TabExecutor {
             Set<String> servers = ProxyServer.getInstance().getServers().keySet();
             ArrayList<String> serverNames = new ArrayList<>(servers);
             serverNames.add("all");
-            TabCompleteHelper.copyPartialMatches(args[0], serverNames, completions);
+            StringUtils.copyPartialMatches(args[0], serverNames, completions);
         }
         return completions;
     }

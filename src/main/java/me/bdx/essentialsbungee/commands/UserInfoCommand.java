@@ -2,15 +2,13 @@ package me.bdx.essentialsbungee.commands;
 
 import me.bdx.essentialsbungee.Utils.EssentialsBungeeConstants;
 import me.bdx.essentialsbungee.Utils.OnlinePlayers;
-import me.bdx.essentialsbungee.Utils.TabCompleteHelper;
+import me.bdx.essentialsbungee.Utils.StringUtils;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
-import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
 import net.md_5.bungee.api.plugin.TabExecutor;
-import org.checkerframework.checker.units.qual.C;
 
 import java.util.ArrayList;
 
@@ -55,7 +53,7 @@ public class UserInfoCommand extends Command implements TabExecutor {
     public Iterable<String> onTabComplete(CommandSender sender, String[] args) {
         ArrayList<String> completions = new ArrayList<>();
         if(sender.hasPermission(EssentialsBungeeConstants.USERINFO_COMMAND_PERMISSION)){
-            return TabCompleteHelper.copyPartialMatches(args[0], OnlinePlayers.getOnlinePlayerNames(), completions);
+            return StringUtils.copyPartialMatches(args[0], OnlinePlayers.getOnlinePlayerNames(), completions);
         }
         return completions;
     }
