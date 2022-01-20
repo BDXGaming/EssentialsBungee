@@ -15,7 +15,6 @@ public final class Essentialsbungee extends Plugin {
 
     public static Essentialsbungee essentialsbungee;
     public ConfigController configcontroller;
-    public WhitelistManager whitelistManager;
 
     @Override
     public void onEnable() {
@@ -32,7 +31,7 @@ public final class Essentialsbungee extends Plugin {
         this.configcontroller = new ConfigController();
 
         //Loads the Whitelist
-        whitelistManager = new WhitelistManager();
+        WhitelistManager.getInstance().startWhitelist();
 
         //Registers the listeners
         getProxy().getPluginManager().registerListener(this, new DisconnectEvent());
@@ -54,7 +53,7 @@ public final class Essentialsbungee extends Plugin {
     public void onDisable() {
 
         //Saves Whitelist
-        whitelistManager.saveWhitelist();
+        WhitelistManager.getInstance().saveWhitelist();
 
         getProxy().getConsole().sendMessage(new TextComponent("[EssentialsBungee]: "+ChatColor.RED + "Plugin version 0.2.0 has been disabled!"));
     }

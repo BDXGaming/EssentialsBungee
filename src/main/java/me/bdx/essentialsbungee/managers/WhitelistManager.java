@@ -3,7 +3,6 @@ package me.bdx.essentialsbungee.managers;
 import me.bdx.essentialsbungee.Essentialsbungee;
 import me.bdx.essentialsbungee.Utils.LoggerControl;
 import me.bdx.essentialsbungee.Utils.MojangPlayerHelper;
-import net.md_5.bungee.api.chat.TextComponent;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
@@ -18,14 +17,24 @@ public class WhitelistManager {
     public ArrayList<UUID> whitelistedUsers;
     public HashMap<String, UUID> whitelistedUsersMap;
 
-    public WhitelistManager() {
+    private WhitelistManager() {
         whitelistedUsers = new ArrayList<>();
+    }
+
+    /**
+     * Starts the whitelist manager
+     */
+    public void startWhitelist(){
         loadSavedWhitelist();
         loadWhitelist();
         whitelistManagerInstance = this;
     }
 
-    public WhitelistManager(ArrayList<UUID> whitelist) {
+    /**
+     * Starts the whitelist manager with the given whitelist
+     * @param whitelist The ArrayList of UUIDs to use as a whitelist
+     */
+    public void startWhitelist(ArrayList<UUID> whitelist){
         whitelistedUsers = whitelist;
         loadSavedWhitelist();
         loadWhitelist();
@@ -37,7 +46,11 @@ public class WhitelistManager {
      * @return The instance of WhitelistManager
      */
     public static WhitelistManager getInstance(){
-        return whitelistManagerInstance;
+
+       if(whitelistManagerInstance == null){
+           whitelistManagerInstance = new WhitelistManager();
+       }
+       return  whitelistManagerInstance;
     }
 
     /**
