@@ -28,8 +28,13 @@ public class MojangPlayerHelper {
      */
     public static UUID getUniqueId(String username){
 
-        String uuid = m.getUUIDOfUsername(username);
-        return formatUUID(uuid);
+        try{
+            String uuid = m.getUUIDOfUsername(username);
+            return formatUUID(uuid);
+        }catch (NullPointerException e){
+            return null;
+        }
+
     }
 
     /**

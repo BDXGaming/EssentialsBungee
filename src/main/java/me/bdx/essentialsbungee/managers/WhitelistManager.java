@@ -168,14 +168,19 @@ public class WhitelistManager {
      * Adds a user to the whitelist during runtime
      * @param username String
      */
-    public void addWhitelistedUser(String username){
+    public boolean addWhitelistedUser(String username){
 
         UUID uuid = MojangPlayerHelper.getUniqueId(username);
+        if(uuid == null){
+            return false;
+        }
         whitelistedUsersMap.put(username, uuid);
         whitelistedUsers.add(uuid);
 
         //Saves the updated whitelist when command is used to ensure whitelist accuracy
         saveWhitelist();
+
+        return true;
     }
 
     /**

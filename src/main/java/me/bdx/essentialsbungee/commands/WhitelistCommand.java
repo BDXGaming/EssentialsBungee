@@ -39,8 +39,12 @@ public class WhitelistCommand extends Command implements TabExecutor {
                         //Checks if a user has been provided
                         if (args.length > 1) {
                             String user = args[1];
-                            WhitelistManager.getInstance().addWhitelistedUser(user);
-                            sender.sendMessage(new TextComponent(ChatColor.GREEN + "Added " + user + " to the whitelist!"));
+                            boolean result = WhitelistManager.getInstance().addWhitelistedUser(user);
+                            if(result){
+                                sender.sendMessage(new TextComponent(ChatColor.GREEN + "Added " + user + " to the whitelist!"));
+                            }else{
+                                sender.sendMessage(new TextComponent(ChatColor.RED + "Error:  " + user + " is not a valid username!"));
+                            }
 
                         } else {
                             sender.sendMessage(new TextComponent(ChatColor.YELLOW + "Please specify a user /gwhitelist add <user>"));
