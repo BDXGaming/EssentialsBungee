@@ -88,7 +88,11 @@ public class WhitelistCommand extends Command implements TabExecutor {
                             sender.sendMessage(new TextComponent("The whitelist is " + ChatColor.RED + "disabled!"));
                         }
                         break;
+                    default:
+                        sender.sendMessage(new TextComponent(ChatColor.YELLOW + "Please use one of the subcommands! (list, on, off, add, remove, status)"));
                 }
+            }else{
+                sender.sendMessage(new TextComponent(ChatColor.YELLOW + "Please use one of the subcommands! (list, on, off, add, remove, status)"));
             }
         }else{
             sender.sendMessage(new TextComponent(EssentialsBungeeConstants.MISSING_PERMISSION_RESPONSE));
