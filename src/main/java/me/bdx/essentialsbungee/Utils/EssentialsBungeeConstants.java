@@ -28,6 +28,12 @@ public class EssentialsBungeeConstants {
     /** Allows a user to use the staffchat command and see staff chat */
     public static final String STAFF_CHAT_COMMAND_PERMISSION  = "essentialsBungee.staffchat";
 
+    /** Allows a user to use the staffchat command and see staff chat */
+    public static final String STAFF_LIST_PERMISSION  = "essentialsBungee.stafflist";
+
+    /** Allows a user to use the staffchat command and see staff chat */
+    public static final String STAFF_LIST_COMMAND_PERMISSION  = "essentialsBungee.stafflist.see";
+
     /** The format of the chat label for staff chat messages */
     public static final String STAFF_CHAT_LABEL = ChatColor.RED + "[" + ChatColor.AQUA + "StaffChat"+ChatColor.RED +"]";
 
