@@ -45,6 +45,7 @@ public final class Essentialsbungee extends Plugin {
         getProxy().getPluginManager().registerCommand(this, new ReportCommand());
         getProxy().getPluginManager().registerCommand(this, new StaffChatCommand());
         getProxy().getPluginManager().registerCommand(this, new OnlineStaffCommand());
+        getProxy().getPluginManager().registerCommand(this, new AdminChatCommand());
 
         //Log in console that plugin is online
         getProxy().getConsole().sendMessage(new TextComponent("[EssentialsBungee]: "+ChatColor.GREEN + "Plugin version 0.2.1 has loaded!"));
