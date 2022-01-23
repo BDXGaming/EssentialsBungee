@@ -28,6 +28,9 @@ public class EssentialsBungeeConstants {
     /** Allows a user to use the staffchat command and see staff chat */
     public static final String STAFF_CHAT_COMMAND_PERMISSION  = "essentialsBungee.staffchat";
 
+    /** Allows a user to use the adminchat command and see admin chat */
+    public static final String ADMIN_CHAT_COMMAND_PERMISSION  = "essentialsBungee.adminchat";
+
     /** Allows a user to use the staffchat command and see staff chat */
     public static final String STAFF_LIST_PERMISSION  = "essentialsBungee.stafflist";
 
@@ -36,6 +39,9 @@ public class EssentialsBungeeConstants {
 
     /** The format of the chat label for staff chat messages */
     public static final String STAFF_CHAT_LABEL = ChatColor.RED + "[" + ChatColor.AQUA + "StaffChat"+ChatColor.RED +"]";
+
+    /** The format of the chat label for staff chat messages */
+    public static final String ADMIN_CHAT_LABEL = ChatColor.RED + "[" + ChatColor.DARK_RED + "AdminChat"+ChatColor.RED +"]";
 
     /** The response given for any missing permissions */
     public static final String MISSING_PERMISSION_RESPONSE = ChatColor.RED + "You do not have the required permissions to use this command!";
