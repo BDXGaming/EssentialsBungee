@@ -21,7 +21,6 @@ public class AdminChatCommand extends Command {
         if(sender.hasPermission(EssentialsBungeeConstants.ADMIN_CHAT_COMMAND_PERMISSION)){
             if(args.length >=1){
                 String message = StringUtils.listToString(args);
-                ProxyServer.getInstance().getConsole().sendMessage(new TextComponent(EssentialsBungeeConstants.ADMIN_CHAT_LABEL + " " + ChatColor.WHITE+ sender.getName() +": "+ChatColor.DARK_RED + message));
                 ChatUtils.broadcast(EssentialsBungeeConstants.ADMIN_CHAT_LABEL + " " +ChatColor.WHITE+ sender.getName() +": "+ChatColor.DARK_RED + message, EssentialsBungeeConstants.ADMIN_CHAT_COMMAND_PERMISSION);
             }else{
                 sender.sendMessage(new TextComponent(ChatColor.YELLOW +"Please include a message to be sent!"));

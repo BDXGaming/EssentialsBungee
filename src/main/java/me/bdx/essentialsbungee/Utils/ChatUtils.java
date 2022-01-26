@@ -13,6 +13,7 @@ public class ChatUtils {
      */
     public static void broadcast(String message, String permission){
 
+        ProxyServer.getInstance().getConsole().sendMessage(new TextComponent(message));
         for(ProxiedPlayer p: ProxyServer.getInstance().getPlayers()){
             if(p.hasPermission(permission)){
                 p.sendMessage(new TextComponent(message));
