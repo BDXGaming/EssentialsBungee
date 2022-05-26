@@ -8,14 +8,16 @@ import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class OnlineStaffManager {
 
     private static OnlineStaffManager onlineStaffManager;
     private final ArrayList<ProxiedPlayer> onlineStaff;
-    private final HashMap<String, String> onlineStaffServers;
+    private final HashMap<String, List<String>> onlineStaffServers;
 
     private OnlineStaffManager(){
         onlineStaff = new ArrayList<>();
@@ -37,16 +39,23 @@ public class OnlineStaffManager {
      * Updates the online staff list with all online staff
      */
     public void updateOnlineStaff() {
-
+        onlineStaffServers.clear();
         for (ProxiedPlayer player : OnlinePlayers.getOnlinePlayers()) {
             if (player.hasPermission(EssentialsBungeeConstants.STAFF_LIST_PERMISSION)) {
-                if(!onlineStaff.contains(player)){
+                if (!onlineStaff.contains(player)) {
                     onlineStaff.add(player);
-                    onlineStaffServers.put(player.getName(), player.getServer().getInfo().getName());
+                }
+
+                if (onlineStaffServers.containsKey(player.getServer().getInfo().getName())) {
+                    onlineStaffServers.get(player.getServer().getInfo().getName()).add(player.getName());
+                } else {
+                    List<String> playerList = new ArrayList<>();
+                    playerList.add(player.getName());
+                    onlineStaffServers.put(player.getServer().getInfo().getName(), playerList);
                 }
             }
-        }
 
+        }
     }
 
     /**
@@ -54,11 +63,14 @@ public class OnlineStaffManager {
      * @return the String message
      */
     public String getOnlineStaffMessage(){
+        updateOnlineStaff();
         StringBuilder message = new StringBuilder();
         message.append(ChatColor.YELLOW).append(ChatColor.BOLD).append("  Online Staff:  \n \n");
-        for (ProxiedPlayer player: OnlinePlayers.getOnlinePlayers()){
-            if(player.hasPermission(EssentialsBungeeConstants.STAFF_LIST_PERMISSION)){
-                message.append(ChatColor.WHITE).append(" - ").append(ChatColor.AQUA).append(player.getName()).append(" ").append(ChatColor.GRAY).append("(").append(player.getServer().getInfo().getName()).append(")\n");
+        for (String serverName: onlineStaffServers.keySet()){
+            message.append(ChatColor.YELLOW).append(ChatColor.BOLD).append("    ").append(serverName).append("  \n");
+            for (String playerName: onlineStaffServers.get(serverName)){
+                message.append(ChatColor.WHITE).append("     - ").append(ChatColor.AQUA).append(playerName).append(" ").
+                        append(ChatColor.GRAY).append("(").append(serverName).append(")\n");
             }
 
         }
