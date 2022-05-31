@@ -49,7 +49,7 @@ public final class EssentialsBungee extends Plugin {
 
         //Log in console that plugin is online
         getProxy().getConsole().sendMessage(new TextComponent("[EssentialsBungee]: "+ChatColor.GREEN +
-                "Plugin version 0.2.4 has loaded!"));
+                "Plugin version 0.2.5 has loaded!"));
     }
 
     @Override
@@ -59,6 +59,6 @@ public final class EssentialsBungee extends Plugin {
         WhitelistManager.getInstance().saveWhitelist();
 
         getProxy().getConsole().sendMessage(new TextComponent("[EssentialsBungee]: "+ChatColor.RED +
-                "Plugin version 0.2.4 has been disabled!"));
+                "Plugin version 0.2.5 has been disabled!"));
     }
 }
