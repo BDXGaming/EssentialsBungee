@@ -1,6 +1,6 @@
 package me.bdx.essentialsbungee.commands;
 
-import me.bdx.essentialsbungee.Essentialsbungee;
+import me.bdx.essentialsbungee.EssentialsBungee;
 import me.bdx.essentialsbungee.Utils.EssentialsBungeeConstants;
 import me.bdx.essentialsbungee.config.ConfigLoader;
 import net.md_5.bungee.api.ChatColor;
@@ -24,7 +24,7 @@ public class ReloadCommand extends Command {
             //Reloads the config instance
             ConfigLoader.reload();
             //Reloads the stored config values
-            Essentialsbungee.essentialsbungee.configcontroller.reload();
+            EssentialsBungee.essentialsbungee.configcontroller.reload();
             sender.sendMessage(new TextComponent(ChatColor.GRAY+"["+ChatColor.GREEN+"EssentialsBungee"+
                     ChatColor.GRAY + "] " +ChatColor.RESET+ChatColor.GREEN+"Reload Complete"));
 

@@ -1,6 +1,6 @@
 package me.bdx.essentialsbungee.handlers;
 
-import me.bdx.essentialsbungee.Essentialsbungee;
+import me.bdx.essentialsbungee.EssentialsBungee;
 import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.PlayerDisconnectEvent;
@@ -13,9 +13,9 @@ public class DisconnectEvent implements Listener {
     public void onDisconnectEvent(PlayerDisconnectEvent event) {
 
         //If set reconnect is enabled, sets the reconnection server to the server given in the config file
-        if(Essentialsbungee.essentialsbungee.configcontroller.RECONNECT_SERVER_STATUS){
+        if(EssentialsBungee.essentialsbungee.configcontroller.RECONNECT_SERVER_STATUS){
             ProxiedPlayer player = event.getPlayer();
-            ServerInfo lobby = Essentialsbungee.essentialsbungee.getProxy().getServerInfo(Essentialsbungee.essentialsbungee.configcontroller.RECONNECT_SERVER_NAME);
+            ServerInfo lobby = EssentialsBungee.essentialsbungee.getProxy().getServerInfo(EssentialsBungee.essentialsbungee.configcontroller.RECONNECT_SERVER_NAME);
             player.setReconnectServer(lobby);
         }
     }

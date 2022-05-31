@@ -9,7 +9,7 @@
     <version>0.2.4</version>
     <packaging>jar</packaging>
 
-    <name>Essentialsbungee</name>
+    <name>EssentialsBungee</name>
 
     <properties>
         <java.version>1.8</java.version>

@@ -11,9 +11,9 @@ import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.plugin.Plugin;
 
-public final class Essentialsbungee extends Plugin {
+public final class EssentialsBungee extends Plugin {
 
-    public static Essentialsbungee essentialsbungee;
+    public static EssentialsBungee essentialsbungee;
     public ConfigController configcontroller;
 
     @Override

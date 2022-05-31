@@ -1,6 +1,6 @@
 package me.bdx.essentialsbungee.commands;
 
-import me.bdx.essentialsbungee.Essentialsbungee;
+import me.bdx.essentialsbungee.EssentialsBungee;
 import me.bdx.essentialsbungee.Utils.EssentialsBungeeConstants;
 import me.bdx.essentialsbungee.Utils.OnlinePlayers;
 import me.bdx.essentialsbungee.Utils.StringUtils;
@@ -70,8 +70,8 @@ public class WhitelistCommand extends Command implements TabExecutor {
                         break;
                     //Disables the whitelist (Turns the whitelist off)
                     case "off":
-                        if (Essentialsbungee.essentialsbungee.configcontroller.USE_WHITELIST) {
-                            Essentialsbungee.essentialsbungee.configcontroller.USE_WHITELIST = false;
+                        if (EssentialsBungee.essentialsbungee.configcontroller.USE_WHITELIST) {
+                            EssentialsBungee.essentialsbungee.configcontroller.USE_WHITELIST = false;
                             sender.sendMessage(new TextComponent(ChatColor.RED + "Proxy whitelist has been disabled!"));
                         } else {
                             sender.sendMessage(new TextComponent("The whitelist is already disabled!"));
@@ -79,8 +79,8 @@ public class WhitelistCommand extends Command implements TabExecutor {
                         break;
                     //Enables the whitelist (Turns on the whitelist)
                     case "on":
-                        if (!(Essentialsbungee.essentialsbungee.configcontroller.USE_WHITELIST)) {
-                            Essentialsbungee.essentialsbungee.configcontroller.USE_WHITELIST = true;
+                        if (!(EssentialsBungee.essentialsbungee.configcontroller.USE_WHITELIST)) {
+                            EssentialsBungee.essentialsbungee.configcontroller.USE_WHITELIST = true;
                             sender.sendMessage(new TextComponent(ChatColor.GREEN +"Proxy whitelist has been enabled!"));
                         } else {
                             sender.sendMessage(new TextComponent("The whitelist is already enabled!"));
@@ -88,7 +88,7 @@ public class WhitelistCommand extends Command implements TabExecutor {
                         break;
                     //Checks the current status of the global whitelist
                     case "status":
-                        if (Essentialsbungee.essentialsbungee.configcontroller.USE_WHITELIST) {
+                        if (EssentialsBungee.essentialsbungee.configcontroller.USE_WHITELIST) {
                             sender.sendMessage(new TextComponent("The whitelist is " + ChatColor.GREEN + "enabled!"));
                         } else {
                             sender.sendMessage(new TextComponent("The whitelist is " + ChatColor.RED + "disabled!"));

@@ -1,6 +1,6 @@
 package me.bdx.essentialsbungee.managers;
 
-import me.bdx.essentialsbungee.Essentialsbungee;
+import me.bdx.essentialsbungee.EssentialsBungee;
 import me.bdx.essentialsbungee.Utils.LoggerControl;
 import me.bdx.essentialsbungee.Utils.MojangPlayerHelper;
 import org.json.simple.JSONObject;
@@ -66,7 +66,7 @@ public class WhitelistManager {
             whitelistedUsersMap = new HashMap<>();
         }
 
-        List<?> userNames = Essentialsbungee.essentialsbungee.configcontroller.WHITELISTED_USERS;
+        List<?> userNames = EssentialsBungee.essentialsbungee.configcontroller.WHITELISTED_USERS;
 
         for (Object user : userNames) {
 
@@ -94,7 +94,7 @@ public class WhitelistManager {
         }
 
         //Write JSON file
-        try (FileWriter file = new FileWriter(Essentialsbungee.essentialsbungee.getDataFolder().toString()+"\\whitelist.json")) {
+        try (FileWriter file = new FileWriter(EssentialsBungee.essentialsbungee.getDataFolder().toString()+"\\whitelist.json")) {
 
             file.write(whitelist.toJSONString());
             file.flush();
@@ -110,7 +110,7 @@ public class WhitelistManager {
     public void loadSavedWhitelist() {
         JSONParser jsonParser = new JSONParser();
 
-        try (FileReader reader = new FileReader(Essentialsbungee.essentialsbungee.getDataFolder().toString()+"\\whitelist.json")) {
+        try (FileReader reader = new FileReader(EssentialsBungee.essentialsbungee.getDataFolder().toString()+"\\whitelist.json")) {
 
             //Read JSON file
             Object obj = jsonParser.parse(reader);
@@ -135,7 +135,7 @@ public class WhitelistManager {
         } catch (IOException | ParseException e) {
 
             if(e instanceof FileNotFoundException){
-                File f = new File(Essentialsbungee.essentialsbungee.getDataFolder(), "whitelist.json");
+                File f = new File(EssentialsBungee.essentialsbungee.getDataFolder(), "whitelist.json");
                 if(!f.exists()){
                     try {
                         f.createNewFile();

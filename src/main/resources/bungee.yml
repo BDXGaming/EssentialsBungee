@@ -1,3 +1,3 @@
-name: Essentialsbungee
+name: EssentialsBungee
 version: ${project.version}
-main: me.bdx.essentialsbungee.Essentialsbungee
+main: me.bdx.essentialsbungee.EssentialsBungee

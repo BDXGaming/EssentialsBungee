@@ -1,6 +1,6 @@
 package me.bdx.essentialsbungee.Utils;
 
-import me.bdx.essentialsbungee.Essentialsbungee;
+import me.bdx.essentialsbungee.EssentialsBungee;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
@@ -14,7 +14,7 @@ public class OnlinePlayers {
      * @return ArrayList<ProxiedPlayer>
      */
     public static Collection<ProxiedPlayer> getOnlinePlayers(){
-        return Essentialsbungee.essentialsbungee.getProxy().getPlayers();
+        return EssentialsBungee.essentialsbungee.getProxy().getPlayers();
     }
 
     /**

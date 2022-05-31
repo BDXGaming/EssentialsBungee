@@ -1,17 +1,13 @@
 package me.bdx.essentialsbungee.managers;
 
-import me.bdx.essentialsbungee.Essentialsbungee;
 import me.bdx.essentialsbungee.Utils.EssentialsBungeeConstants;
 import me.bdx.essentialsbungee.Utils.OnlinePlayers;
 import net.md_5.bungee.api.ChatColor;
-import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class OnlineStaffManager {
 
