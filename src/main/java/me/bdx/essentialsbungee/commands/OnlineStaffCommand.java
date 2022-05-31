@@ -16,7 +16,8 @@ public class OnlineStaffCommand extends Command {
     public void execute(CommandSender sender, String[] args) {
 
         if(sender.hasPermission(EssentialsBungeeConstants.STAFF_LIST_COMMAND_PERMISSION)){
-            sender.sendMessage(new TextComponent(String.valueOf(OnlineStaffManager.getInstance().getOnlineStaffMessage())));
+            sender.sendMessage(new TextComponent(String.valueOf(OnlineStaffManager.getInstance().
+                    getOnlineStaffMessage())));
         }else{
             sender.sendMessage(new TextComponent(EssentialsBungeeConstants.MISSING_PERMISSION_RESPONSE));
         }

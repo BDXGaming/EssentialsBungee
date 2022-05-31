@@ -21,7 +21,9 @@ public class StaffChatCommand extends Command {
         if(sender.hasPermission(EssentialsBungeeConstants.STAFF_CHAT_COMMAND_PERMISSION)){
             if(args.length >=1){
                 String message = StringUtils.listToString(args);
-                ChatUtils.broadcast(EssentialsBungeeConstants.STAFF_CHAT_LABEL + " " +ChatColor.WHITE+ sender.getName() +": "+ChatColor.AQUA + message, EssentialsBungeeConstants.STAFF_CHAT_COMMAND_PERMISSION);
+                ChatUtils.broadcast(EssentialsBungeeConstants.STAFF_CHAT_LABEL + " " +
+                        ChatColor.WHITE+ sender.getName() +": "+ChatColor.AQUA + message,
+                        EssentialsBungeeConstants.STAFF_CHAT_COMMAND_PERMISSION);
             }else{
                 sender.sendMessage(new TextComponent(ChatColor.YELLOW +"Please include a message to be sent!"));
             }

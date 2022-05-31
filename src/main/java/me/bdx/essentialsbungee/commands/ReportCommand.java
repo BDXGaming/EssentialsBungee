@@ -23,7 +23,10 @@ public class ReportCommand extends Command implements TabExecutor {
         if(sender.hasPermission(EssentialsBungeeConstants.REPORT_COMMAND_PERMISSION)){
             if(args.length >=1){
                 String reportMessage = StringUtils.partialStringToList(args, 1);
-                ChatUtils.broadcast(ChatColor.YELLOW +""+ChatColor.BOLD +"User Report \n \n"+ChatColor.YELLOW + "Player: "+ChatColor.RED+sender.getName()+ChatColor.YELLOW +" reported "+ChatColor.RED+args[0] +ChatColor.YELLOW + " for " +ChatColor.RED +reportMessage, EssentialsBungeeConstants.REPORT_COMMAND_ALERT_PERMISSION);
+                ChatUtils.broadcast(ChatColor.YELLOW +""+ChatColor.BOLD +"User Report \n \n"+ChatColor.YELLOW +
+                        "Player: "+ChatColor.RED+sender.getName()+ChatColor.YELLOW +" reported "+ChatColor.RED+args[0]
+                        +ChatColor.YELLOW + " for " +ChatColor.RED +reportMessage,
+                        EssentialsBungeeConstants.REPORT_COMMAND_ALERT_PERMISSION);
             }else{
                 sender.sendMessage(new TextComponent(ChatColor.YELLOW + "Please include a user to report!"));
             }

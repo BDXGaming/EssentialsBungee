@@ -31,7 +31,8 @@ public class WhitelistCommand extends Command implements TabExecutor {
                 switch (args[0]) {
                     case "list":
                         //Checks if user has list subcommand permission
-                        sender.sendMessage(new TextComponent("Whitelisted Users: \n" + WhitelistManager.getInstance().getWhitelistedUsersMap().keySet().toString()));
+                        sender.sendMessage(new TextComponent("Whitelisted Users: \n" + WhitelistManager.getInstance().
+                                getWhitelistedUsersMap().keySet().toString()));
                         break;
 
                     //Adds the given user to the whitelist
@@ -41,13 +42,16 @@ public class WhitelistCommand extends Command implements TabExecutor {
                             String user = args[1];
                             boolean result = WhitelistManager.getInstance().addWhitelistedUser(user);
                             if(result){
-                                sender.sendMessage(new TextComponent(ChatColor.GREEN + "Added " + user + " to the whitelist!"));
+                                sender.sendMessage(new TextComponent(ChatColor.GREEN + "Added " + user + " to the " +
+                                        "whitelist!"));
                             }else{
-                                sender.sendMessage(new TextComponent(ChatColor.RED + "Error:  " + user + " is not a valid username!"));
+                                sender.sendMessage(new TextComponent(ChatColor.RED + "Error:  " + user + " is not a " +
+                                        "valid username!"));
                             }
 
                         } else {
-                            sender.sendMessage(new TextComponent(ChatColor.YELLOW + "Please specify a user /gwhitelist add <user>"));
+                            sender.sendMessage(new TextComponent(ChatColor.YELLOW + "Please specify a user /gwhitelist "
+                                    + "add <user>"));
                         }
                         break;
                     //Removes the given user to the whitelist
@@ -56,10 +60,12 @@ public class WhitelistCommand extends Command implements TabExecutor {
                         if (args.length > 1) {
                             String user = args[1];
                             WhitelistManager.getInstance().removeWhitelistedUser(user);
-                            sender.sendMessage(new TextComponent(ChatColor.GREEN + "Removed " + user + " from the whitelist!"));
+                            sender.sendMessage(new TextComponent(ChatColor.GREEN + "Removed " + user + " from the " +
+                                    "whitelist!"));
 
                         } else {
-                            sender.sendMessage(new TextComponent(ChatColor.YELLOW + "Please specify a user /gwhitelist remove <user>"));
+                            sender.sendMessage(new TextComponent(ChatColor.YELLOW + "Please specify a user /gwhitelist "
+                                    + "remove <user>"));
                         }
                         break;
                     //Disables the whitelist (Turns the whitelist off)
@@ -75,7 +81,7 @@ public class WhitelistCommand extends Command implements TabExecutor {
                     case "on":
                         if (!(Essentialsbungee.essentialsbungee.configcontroller.USE_WHITELIST)) {
                             Essentialsbungee.essentialsbungee.configcontroller.USE_WHITELIST = true;
-                            sender.sendMessage(new TextComponent(ChatColor.GREEN + "Proxy whitelist has been enabled!"));
+                            sender.sendMessage(new TextComponent(ChatColor.GREEN +"Proxy whitelist has been enabled!"));
                         } else {
                             sender.sendMessage(new TextComponent("The whitelist is already enabled!"));
                         }
@@ -89,10 +95,12 @@ public class WhitelistCommand extends Command implements TabExecutor {
                         }
                         break;
                     default:
-                        sender.sendMessage(new TextComponent(ChatColor.YELLOW + "Please use one of the subcommands! (list, on, off, add, remove, status)"));
+                        sender.sendMessage(new TextComponent(ChatColor.YELLOW + "Please use one of the subcommands! " +
+                                "(list, on, off, add, remove, status)"));
                 }
             }else{
-                sender.sendMessage(new TextComponent(ChatColor.YELLOW + "Please use one of the subcommands! (list, on, off, add, remove, status)"));
+                sender.sendMessage(new TextComponent(ChatColor.YELLOW + "Please use one of the subcommands! " +
+                        "(list, on, off, add, remove, status)"));
             }
         }else{
             sender.sendMessage(new TextComponent(EssentialsBungeeConstants.MISSING_PERMISSION_RESPONSE));
@@ -111,10 +119,12 @@ public class WhitelistCommand extends Command implements TabExecutor {
             }else{
                 if(args[0].equalsIgnoreCase("add") || args[0].equalsIgnoreCase("remove")){
                     if(args[0].equalsIgnoreCase("add")){
-                        return StringUtils.copyPartialMatches(args[1], OnlinePlayers.getOnlinePlayerNames(), completions);
+                        return StringUtils.copyPartialMatches(args[1], OnlinePlayers.getOnlinePlayerNames(),
+                                completions);
                     }
 
-                    return StringUtils.copyPartialMatches(args[1], WhitelistManager.getInstance().getWhitelistedUsersMap().keySet(), completions);
+                    return StringUtils.copyPartialMatches(args[1], WhitelistManager.getInstance().
+                            getWhitelistedUsersMap().keySet(), completions);
                 }
 
             }

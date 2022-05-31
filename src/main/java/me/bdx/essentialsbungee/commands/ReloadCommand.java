@@ -19,16 +19,19 @@ public class ReloadCommand extends Command {
         //Checks if sender has permission to reload the config
         if(sender.hasPermission(EssentialsBungeeConstants.RELOAD_COMMAND_PERMISSION)){
 
-            sender.sendMessage(new TextComponent(ChatColor.GRAY+"["+ChatColor.GREEN+"EssentialsBungee"+ChatColor.GRAY + "] " +ChatColor.RESET+ChatColor.YELLOW+"Starting Reload"));
+            sender.sendMessage(new TextComponent(ChatColor.GRAY+"["+ChatColor.GREEN+"EssentialsBungee"+
+                    ChatColor.GRAY + "] " +ChatColor.RESET+ChatColor.YELLOW+"Starting Reload"));
             //Reloads the config instance
             ConfigLoader.reload();
             //Reloads the stored config values
             Essentialsbungee.essentialsbungee.configcontroller.reload();
-            sender.sendMessage(new TextComponent(ChatColor.GRAY+"["+ChatColor.GREEN+"EssentialsBungee"+ChatColor.GRAY + "] " +ChatColor.RESET+ChatColor.GREEN+"Reload Complete"));
+            sender.sendMessage(new TextComponent(ChatColor.GRAY+"["+ChatColor.GREEN+"EssentialsBungee"+
+                    ChatColor.GRAY + "] " +ChatColor.RESET+ChatColor.GREEN+"Reload Complete"));
 
         }else{
             //Sends if the user lacks the permissions needed to use the reload command
-            sender.sendMessage(new TextComponent(ChatColor.RED + EssentialsBungeeConstants.MISSING_PERMISSION_RESPONSE));
+            sender.sendMessage(new TextComponent(ChatColor.RED +
+                    EssentialsBungeeConstants.MISSING_PERMISSION_RESPONSE));
         }
     }
 }

@@ -27,7 +27,8 @@ public class ServerStatusCommand extends Command implements TabExecutor {
                     if(!(args[0].equalsIgnoreCase("all"))){
                         if (servers.contains(server)) {
                             Callback<ServerPing> callback = (result, error) -> {
-                                String baseMessage =ChatColor.GOLD + "Server " + ChatColor.AQUA + server + ChatColor.GOLD +" is currently ";
+                                String baseMessage =ChatColor.GOLD + "Server " + ChatColor.AQUA + server +
+                                        ChatColor.GOLD +" is currently ";
                                 if (result != null) {
                                     sender.sendMessage(new TextComponent(baseMessage + ChatColor.GREEN + "online!"));
                                 } else {
@@ -36,14 +37,17 @@ public class ServerStatusCommand extends Command implements TabExecutor {
                             };
                             ProxyServer.getInstance().getServerInfo(server).ping(callback);
                         }else {
-                            sender.sendMessage(new TextComponent(ChatColor.YELLOW + "There is no server by the name " + ChatColor.RED + server));
+                            sender.sendMessage(new TextComponent(ChatColor.YELLOW + "There is no server by the name " +
+                                    ChatColor.RED + server));
                         }
 
                     }else{
-                        sender.sendMessage(new TextComponent(ChatColor.YELLOW +""+ ChatColor.BOLD + "All server status \n \n" ));
+                        sender.sendMessage(new TextComponent(ChatColor.YELLOW +""+ ChatColor.BOLD +
+                                "All server status \n \n" ));
                         for(String serverName: servers){
                             Callback<ServerPing> callback = (result, error) -> {
-                                String baseMessage =ChatColor.GOLD + "Server " + ChatColor.AQUA + serverName + ChatColor.GOLD +" is currently ";
+                                String baseMessage =ChatColor.GOLD + "Server " + ChatColor.AQUA + serverName +
+                                        ChatColor.GOLD +" is currently ";
                                 if (result != null) {
                                     sender.sendMessage(new TextComponent(baseMessage + ChatColor.GREEN + "online!"));
                                 } else {
