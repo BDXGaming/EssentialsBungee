@@ -15,7 +15,8 @@ public class DisconnectEvent implements Listener {
         //If set reconnect is enabled, sets the reconnection server to the server given in the config file
         if(EssentialsBungee.essentialsbungee.configcontroller.RECONNECT_SERVER_STATUS){
             ProxiedPlayer player = event.getPlayer();
-            ServerInfo lobby = EssentialsBungee.essentialsbungee.getProxy().getServerInfo(EssentialsBungee.essentialsbungee.configcontroller.RECONNECT_SERVER_NAME);
+            ServerInfo lobby = EssentialsBungee.essentialsbungee.getProxy().getServerInfo(
+                    EssentialsBungee.essentialsbungee.configcontroller.RECONNECT_SERVER_NAME);
             player.setReconnectServer(lobby);
         }
     }
