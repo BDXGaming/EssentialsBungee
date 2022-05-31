@@ -22,3 +22,5 @@ whitelisted-users: []
 # Use the & for color codes
 # This is the message sent to plays who are not whitelisted when whitelist is enabled
 no-connect-message: "&c You are not permitted to connect!"
+#  - Also supports this list format
+#  - You can uncomment the line after removing the default message
